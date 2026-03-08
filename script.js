@@ -102,8 +102,8 @@ function answer(selectAnswer) {
     } else {
         document.getElementById(selectAnswer).parentNode.classList.add('bg-danger');          
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');          
-    }
-    // console.log('That is the Number of the answer', selectedQuestionNumber);
-    // console.log('select is', selectAnswer);
-    // console.log('Right answer:', question['right_answer']);
+    };
+    
+    document.getElementById('next-button').removeAttribute("disabled");
+    // document.getElementById('next-button').disabled = false;  <--works too!
 }

@@ -1,13 +1,22 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 .main_container {
-    min-height: 100vh;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(88, 6, 6) !important;
+    background-image: url('./img/sunrise.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .quiz_card {
     width: 30rem;
+    box-shadow: 0 15px 15px 1px black;
 }
 
 .question_footer {
