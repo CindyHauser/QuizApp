@@ -35,3 +35,16 @@ body {
 .bg-success, .bg-danger {
     color: white !important;
 }
+
+.width_100 {
+    width: 100%;
+}
+
+.text_center {
+    text-align: center;
+}
+
+.finish_quiz_headline {
+    font-size: 38px;
+    margin-bottom: 32px;
+}

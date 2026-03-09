@@ -66,6 +66,7 @@ let questions = [
 ];
 
 let currentQuestion = 0;
+let rightQuestionsRef = 0;
 
 function init() {
     questionsLenght();
@@ -73,37 +74,59 @@ function init() {
 }
 
 function questionsLenght() {
-    let questionsAmountRef = document.getElementById('questionsAmount');
-    questionsAmountRef.innerHTML = questions.length;
+    document.getElementById('questionsAmount').innerHTML = questions.length;
+    document.getElementById('questionsAmountFinish').innerHTML = questions.length;
 };
 
 function showQuestion() {
-    let question = questions[currentQuestion];
-    let questiontextRef = document.getElementById('questiontext');
-    let answer_1Ref = document.getElementById('answer_1');
-    let answer_2Ref = document.getElementById('answer_2');
-    let answer_3Ref = document.getElementById('answer_3');
-    let answer_4Ref = document.getElementById('answer_4');
 
-    questiontextRef.innerHTML = question['question'];
-    answer_1Ref.innerHTML = question['answer_1'];
-    answer_2Ref.innerHTML = question['answer_2'];
-    answer_3Ref.innerHTML = question['answer_3'];
-    answer_4Ref.innerHTML = question['answer_4'];
+    if (currentQuestion >= questions.length) {
+        document.getElementById('end-screen').style = '';
+        document.getElementById('question-body').style = 'display: none';
+        document.getElementById('right-questions').innerHTML = rightQuestionsRef;
+        document.getElementById('header-image').src = "./img/ready.jpg";
+    } else {
+        let question = questions[currentQuestion];
+
+        document.getElementById('current-question-number').innerHTML = currentQuestion + 1;
+        document.getElementById('questiontext').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    };
 }
 
 function answer(selectAnswer) {
     let question = questions[currentQuestion];
-    let selectedQuestionNumber = selectAnswer.slice(-1);
+    let selectedQuestionNumber = selectAnswer.slice(-1);  //to get the last char (letter) of this string -> you also can use -3 and you get the last 3 chars
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
     if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selectAnswer).parentNode.classList.add('bg-success');  // 'parentNode'-> to give the parent element this class
+        rightQuestionsRef++;
     } else {
-        document.getElementById(selectAnswer).parentNode.classList.add('bg-danger');          
-        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');          
+        document.getElementById(selectAnswer).parentNode.classList.add('bg-danger');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     };
-    
     document.getElementById('next-button').removeAttribute("disabled");
     // document.getElementById('next-button').disabled = false;  <--works too!
+}
+
+function nextQuestion() {
+    currentQuestion++;          // from index 0 to index 1
+    document.getElementById('next-button').disabled = true;
+    resetAnswerButtons();
+    showQuestion();
+}
+
+function resetAnswerButtons() {
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
 }

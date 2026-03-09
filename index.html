@@ -27,8 +27,19 @@
 
     <div class="main_container">
         <div class="card quiz_card">
-            <img src="./img/pushup.jpg" class="card-img-top" alt="Push up">
-            <div class="card-body">
+            <img src="./img/pushup.jpg" id="header-image" class="card-img-top" alt="Push up">
+
+            <div class="card-body" id="end-screen" style="display: none;">
+                <div class="text_center finish_quiz_headline">
+                    Quiz beendet!
+                </div>
+
+                <div class="text_center">
+                    Du hast <b id="right-questions">X</b> von <b id="questionsAmountFinish">X</b> Fragen richtig beantwortet!
+                </div>
+            </div>
+
+            <div class="card-body" id="question-body">
                 <h5 class="card-title" id="questiontext">Frage</h5>
 
                 <div class="card quiz-answer-card mb-2" onclick="answer('answer_1')">
@@ -57,9 +68,10 @@
 
                 <div class="question_footer">
                     <span>
-                        <b>1</b> von <b id="questionsAmount"></b> Fragen
+                        <b id="current-question-number">1</b> von <b id="questionsAmount"></b> Fragen
                     </span>
-                    <button class="btn btn-dark" disabled id="next-button">Nächste Frage</button>
+                    <button onclick="nextQuestion()" class="btn btn-dark" disabled id="next-button">Nächste
+                        Frage</button>
                 </div>
 
             </div>
