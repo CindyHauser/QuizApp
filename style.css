@@ -52,3 +52,9 @@ body {
 .progress-bar {
     background-color: rgb(166, 75, 0) !important;
 }
+
+.button_new_game{
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}

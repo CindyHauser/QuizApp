@@ -88,10 +88,10 @@ function showQuestion() {
     } else {
         let question = questions[currentQuestion];
 
-        let percent = (currentQuestion+1) / questions.length;
+        let percent = (currentQuestion + 1) / questions.length;
         percent = Math.round(percent * 100);
         document.getElementById('progress-bar-percent').innerHTML = `${percent} %`;
-        document.getElementById('progress-bar-percent').style =`width : ${percent}%`;
+        document.getElementById('progress-bar-percent').style = `width : ${percent}%`;
 
         document.getElementById('current-question-number').innerHTML = currentQuestion + 1;
         document.getElementById('questiontext').innerHTML = question['question'];
@@ -134,4 +134,13 @@ function resetAnswerButtons() {
     document.getElementById('answer_3').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+
+function restartGame() {
+    document.getElementById('header-image').src = "./img/pushup.jpg";
+    currentQuestion = 0;
+    rightQuestionsRef = 0;
+    document.getElementById('end-screen').style =  'display: none';         // hide end screen again
+    document.getElementById('question-body').style = '';                          // show questions again
+    init();
 }
