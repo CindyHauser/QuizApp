@@ -67,6 +67,8 @@ let questions = [
 
 let currentQuestion = 0;
 let rightQuestionsRef = 0;
+let AUDIO_RIGHT = new Audio('audio/right.mp3');
+let AUDIO_WRONG = new Audio('audio/wrong.mp3');
 
 function init() {
     questionsLenght();
@@ -109,10 +111,12 @@ function answer(selectAnswer) {
 
     if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selectAnswer).parentNode.classList.add('bg-success');  // 'parentNode'-> to give the parent element this class
+        AUDIO_RIGHT.play();
         rightQuestionsRef++;
     } else {
         document.getElementById(selectAnswer).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+        AUDIO_WRONG.play();
     };
     document.getElementById('next-button').removeAttribute("disabled");
     // document.getElementById('next-button').disabled = false;  <--works too!
